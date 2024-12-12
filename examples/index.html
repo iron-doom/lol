@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Gift</title>
+    <!-- Here we import Vue and the Component -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="../scratch-off-vue.js"></script>
+    <!-- Some styles for the demo page -->
+    <style>
+        /* Basic reset for body */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+            background-color: #f4f4f4;
+        }
+
+        /* Container for the whole content */
+        #root {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Set a width for the container */
+        }
+
+        /* Heading style */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Styling the example text */
+        .example {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Success message when the image is fully scratched */
+        .complete {
+            color: green;
+        }
+
+        /* Styling for the scratch-off component container */
+        scratch-off {
+            margin-top: 20px;
+        }
+
+        /* Adding some space between different scratch-off elements */
+        .example span {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root">
+    <h1>Virtual Gift To Venky</h1>
+    <div class="example">
+        <span v-if="!revealed1"></span>
+        <span v-else class="complete"> ... Sorry "</span>
+        <scratch-off
+            :width="width"
+            :height="height"
+            foreground="#aaa"
+            background="images/1734033096.png"
+            @finished="revealed1 = true"
+        ></scratch-off>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            width: 256,
+            height: 256,
+            revealed1: false,
+            revealed2: false,
+        },
+    });
+</script>
+
+</body>
+</html>
